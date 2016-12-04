@@ -9,15 +9,11 @@ typedef std::tuple<int, int> position;
 
 // Define a hasher that is capable of hashing our position typedef
 struct PosHasher {
-	std::size_t operator()(const position& k) const
+	std::size_t operator()(const position& p) const
 	{
-		using std::size_t;
-		using std::hash;
-		using std::string;
-
 		int custom_hash = 17;
-		custom_hash = custom_hash * 31 + std::hash<int>()(std::get<0>(k));
-		custom_hash = custom_hash * 31 + std::hash<int>()(std::get<1>(k));
+		custom_hash = custom_hash * 31 + std::hash<int>()(std::get<0>(p));
+		custom_hash = custom_hash * 31 + std::hash<int>()(std::get<1>(p));
 		return custom_hash;
 	}
 };
