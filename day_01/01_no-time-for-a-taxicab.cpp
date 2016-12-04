@@ -1,13 +1,12 @@
+#include "01_no-time-for-a-taxicab.h"
 #include <iostream>
 #include <vector>
 #include <tuple>
 #include <string>
 #include <algorithm>
 
-using namespace std;
-
-int main() {
-	string input = "R3, L5, R2, L1, L2, R5, L2, R2, L2, L2, L1, R2, L2, R4, R4, R1, L2, L3, R3, L1, R2, L2, L4, R4, R5, L3, R3, L3, L3, R4, R5, L3, R3, L5, L1, L2, R2, L1, R3, R1, L1, R187, L1, R2, R47, L5, L1, L2, R4, R3, L3, R3, R4, R1, R3, L1, L4, L1, R2, L1, R4, R5, L1, R77, L5, L4, R3, L2, R4, R5, R5, L2, L2, R2, R5, L2, R194, R5, L2, R4, L5, L4, L2, R5, L3, L2, L5, R5, R2, L3, R3, R1, L4, R2, L1, R5, L1, R5, L1, L1, R3, L1, R5, R2, R5, R5, L4, L5, L5, L5, R3, L2, L5, L4, R3, R1, R1, R4, L2, L4, R5, R5, R4, L2, L2, R5, R5, L5, L2, R4, R4, L4, R1, L3, R1, L1, L1, L1, L4, R5, R4, L4, L4, R5, R3, L2, L2, R3, R1, R4, L3, R1, L4, R3, L3, L2, R2, R2, R2, L1, L4, R3, R2, R2, L3, R2, L3, L2, R4, L2, R3, L4, R5, R4, R1, R5, R3";
+void Day01::solve() {
+	std::string input = "R3, L5, R2, L1, L2, R5, L2, R2, L2, L2, L1, R2, L2, R4, R4, R1, L2, L3, R3, L1, R2, L2, L4, R4, R5, L3, R3, L3, L3, R4, R5, L3, R3, L5, L1, L2, R2, L1, R3, R1, L1, R187, L1, R2, R47, L5, L1, L2, R4, R3, L3, R3, R4, R1, R3, L1, L4, L1, R2, L1, R4, R5, L1, R77, L5, L4, R3, L2, R4, R5, R5, L2, L2, R2, R5, L2, R194, R5, L2, R4, L5, L4, L2, R5, L3, L2, L5, R5, R2, L3, R3, R1, L4, R2, L1, R5, L1, R5, L1, L1, R3, L1, R5, R2, R5, R5, L4, L5, L5, L5, R3, L2, L5, L4, R3, R1, R1, R4, L2, L4, R5, R5, R4, L2, L2, R5, R5, L5, L2, R4, R4, L4, R1, L3, R1, L1, L1, L1, L4, R5, R4, L4, L4, R5, R3, L2, L2, R3, R1, R4, L3, R1, L4, R3, L3, L2, R2, R2, R2, L1, L4, R3, R2, R2, L3, R2, L3, L2, R4, L2, R3, L4, R5, R4, R1, R5, R3";
 	
 	unsigned int direction = 0;
 	int pos[] = { 0, 0 };
@@ -15,8 +14,8 @@ int main() {
 	int steps;
 	int steps_end_index;
 	int steps_string_length;
-	vector<tuple<int, int>> visited_positions;
-	tuple<int, int> headquarters_pos;
+	std::vector<std::tuple<int, int>> visited_positions;
+	std::tuple<int, int> headquarters_pos;
 	bool headquarters_found = false;
 
 	for (int i = 0; i < input.size(); i) {
@@ -35,7 +34,7 @@ int main() {
 			// We need to check each coordinate we pass, not only when we stop at an intersection
 			for (int j = 0; j < steps; j++) {
 				pos[axis] = (direction & 2) ? pos[axis] - 1 : pos[axis] + 1;
-				tuple<int, int> current_location = std::make_tuple(pos[0], pos[1]);
+				std::tuple<int, int> current_location = std::make_tuple(pos[0], pos[1]);
 				if (std::find(visited_positions.begin(), visited_positions.end(), current_location) != visited_positions.end()) {
 					headquarters_pos = current_location;
 					headquarters_found = true;
