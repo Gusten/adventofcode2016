@@ -30,19 +30,19 @@ void Day02::solve() {
 
 		// Part 2 variables
 		std::unordered_map<position, char, PosHasher> valid_positions;
-		valid_positions[std::make_tuple<int, int>(0, 2)] = '1';
-		valid_positions[std::make_tuple<int, int>(-1, 1)] = '2';
-		valid_positions[std::make_tuple<int, int>(0, 1)] = '3';
-		valid_positions[std::make_tuple<int, int>(1, 1)] = '4';
-		valid_positions[std::make_tuple<int, int>(-2, 0)] = '5';
-		valid_positions[std::make_tuple<int, int>(-1, 0)] = '6';
-		valid_positions[std::make_tuple<int, int>(0, 0)] = '7';
-		valid_positions[std::make_tuple<int, int>(1, 0)] = '8';
-		valid_positions[std::make_tuple<int, int>(2, 0)] = '9';
-		valid_positions[std::make_tuple<int, int>(-1, -1)] = 'A';
-		valid_positions[std::make_tuple<int, int>(0, -1)] = 'B';
-		valid_positions[std::make_tuple<int, int>(1, -1)] = 'C';
-		valid_positions[std::make_tuple<int, int>(0, -2)] = 'D';
+		valid_positions[std::make_tuple(0, 2)] = '1';
+		valid_positions[std::make_tuple(-1, 1)] = '2';
+		valid_positions[std::make_tuple(0, 1)] = '3';
+		valid_positions[std::make_tuple(1, 1)] = '4';
+		valid_positions[std::make_tuple(-2, 0)] = '5';
+		valid_positions[std::make_tuple(-1, 0)] = '6';
+		valid_positions[std::make_tuple(0, 0)] = '7';
+		valid_positions[std::make_tuple(1, 0)] = '8';
+		valid_positions[std::make_tuple(2, 0)] = '9';
+		valid_positions[std::make_tuple(-1, -1)] = 'A';
+		valid_positions[std::make_tuple(0, -1)] = 'B';
+		valid_positions[std::make_tuple(1, -1)] = 'C';
+		valid_positions[std::make_tuple(0, -2)] = 'D';
 		int current_pos_part2[] = { 0, -2 };
 		int column_index = 0;
 		int row_index = 2;
