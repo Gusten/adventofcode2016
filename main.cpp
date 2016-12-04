@@ -3,6 +3,7 @@
 #include "day_01\01_no-time-for-a-taxicab.h"
 #include "day_02\02_bathroom-security.h"
 #include "day_03\03_squares-with-three-sides.h"
+#include "day_04\04_security_through_obscurity.h"
 
 int main() {
 	/*
@@ -15,11 +16,15 @@ int main() {
 	Problem *day02 = new Day02();
 	day02->solve();
 	delete day02;
-	*/
 
 	Problem *day03 = new Day03();
 	day03->solve();
 	delete day03;
+	*/
+
+	Problem *day04 = new Day04();
+	day04->solve();
+	delete day04;
 
 	for (;;) {}
 }

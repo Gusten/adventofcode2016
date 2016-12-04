@@ -4,18 +4,20 @@
 #include <fstream>
 #include <vector>
 
-// Split a string based on a delimiter and push them into the provided vector
-void split_by_and_remove_empty(const std::string &input, const std::string &delim, std::vector<std::string> &elems) {
-	size_t index = 0;
-	size_t next_delim_index;
-	while ((next_delim_index = input.find(delim, index)) != std::string::npos) {
-		std::string element = input.substr(index, next_delim_index - index);
-		if (!element.empty()) {
-			elems.push_back(input.substr(index, next_delim_index - index));
+namespace {
+	// Split a string based on a delimiter and push them into the provided vector
+	void split_by_and_remove_empty(const std::string &input, const std::string &delim, std::vector<std::string> &elems) {
+		size_t index = 0;
+		size_t next_delim_index;
+		while ((next_delim_index = input.find(delim, index)) != std::string::npos) {
+			std::string element = input.substr(index, next_delim_index - index);
+			if (!element.empty()) {
+				elems.push_back(input.substr(index, next_delim_index - index));
+			}
+			index += next_delim_index - index + delim.size();
 		}
-		index += next_delim_index - index + delim.size();
+		elems.push_back(input.substr(index));
 	}
-	elems.push_back(input.substr(index));
 }
 
 void parse_list_to_int(const std::vector<std::string> &input, std::vector<int> &output) {
