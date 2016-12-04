@@ -1,5 +1,8 @@
 #include <iostream>
+#include <vector>
+#include <tuple>
 #include <string>
+#include <algorithm>
 
 using namespace std;
 
@@ -12,6 +15,9 @@ int main() {
 	int steps;
 	int steps_end_index;
 	int steps_string_length;
+	vector<tuple<int, int>> visited_positions;
+	tuple<int, int> headquarters_pos;
+	bool headquarters_found = false;
 
 	for (int i = 0; i < input.size(); i) {
 		// Find which axis to move along
@@ -23,12 +29,36 @@ int main() {
 		steps_string_length = (steps_end_index > 0) ? steps_end_index - i : input.size() - i;
 		steps = std::stoi(input.substr(i, steps_string_length));
 
-		// Walk n steps along the current axis
-		pos[axis] = (direction & 2) ? pos[axis] - steps : pos[axis] + steps;
+		// Slow-step only if we haven't already found bunny HQ
+		if (!headquarters_found) {
+			// Add coordinates we pass to visited
+			// We need to check each coordinate we pass, not only when we stop at an intersection
+			for (int j = 0; j < steps; j++) {
+				pos[axis] = (direction & 2) ? pos[axis] - 1 : pos[axis] + 1;
+				tuple<int, int> current_location = std::make_tuple(pos[0], pos[1]);
+				if (std::find(visited_positions.begin(), visited_positions.end(), current_location) != visited_positions.end()) {
+					headquarters_pos = current_location;
+					headquarters_found = true;
+				}
+				else {
+					visited_positions.push_back(current_location);
+				}
+			}
+		}
+		// If headquarter is already found, go quick
+		else {
+			pos[axis] = (direction & 2) ? pos[axis] - steps : pos[axis] + steps;
+		}
 
 		i += steps_string_length + 2;
 	}
 
-	cout << "X-coordinate: " << pos[0] << "\nY-coordinate: " << pos[1] << "\nTotal distance: " << abs(pos[0]) + abs(pos[1]);
+	std::cout << "Part 1:\nX-coordinate: " << pos[0]
+			  << "\nY-coordinate: " << pos[1]
+		      << "\nTotal distance: " << abs(pos[0]) + abs(pos[1]);
+
+	std::cout << "\n\nPart 2:\nX-coordinate: " << std::get<0>(headquarters_pos) 
+			  << "\nY-coordinate: " << std::get<1>(headquarters_pos) 
+			  << "\nTotal distance: " << abs(std::get<0>(headquarters_pos)) + abs(std::get<1>(headquarters_pos));
 }
 
