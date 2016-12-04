@@ -44,8 +44,6 @@ void Day02::solve() {
 		valid_positions[std::make_tuple(1, -1)] = 'C';
 		valid_positions[std::make_tuple(0, -2)] = 'D';
 		int current_pos_part2[] = { 0, -2 };
-		int column_index = 0;
-		int row_index = 2;
 		std::string keycode_part2;
 
 		while (getline(input_file, line)) {
