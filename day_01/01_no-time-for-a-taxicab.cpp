@@ -1,4 +1,3 @@
-#include "stdafx.h"
 #include <iostream>
 #include <string>
 
@@ -14,8 +13,7 @@ int main() {
 	int steps_end_index;
 	int steps_string_length;
 
-	for (int i = 0; i < input.size(); i)
-	{
+	for (int i = 0; i < input.size(); i) {
 		// Find which axis to move along
 		direction = (input[i] == 'R') ? direction + 1 : direction - 1;
 		axis = direction % 2;
@@ -32,6 +30,5 @@ int main() {
 	}
 
 	cout << "X-coordinate: " << pos[0] << "\nY-coordinate: " << pos[1] << "\nTotal distance: " << abs(pos[0]) + abs(pos[1]);
-	for (;;){}
 }
 
